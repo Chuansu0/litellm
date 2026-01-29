@@ -3,7 +3,7 @@ model_list:
   - model_name: my-llm # Moltbot 只需要呼叫這個名字
     litellm_params:
       model: openai/local-model # 讓 LiteLLM 以 OpenAI 格式解析
-      api_base: https://lmstudio.neovega.cc:1234/v1
+      api_base: https://home-llm.neovega.cc/v1
       api_key: "527@Chuan"
       rpm: 10 # 每分鐘請求限制（依您電腦效能調整）
     model_info:
@@ -19,7 +19,7 @@ model_list:
       order: 2 # 當 order 1 失敗時才使用
 
 router_settings:
-  routing_strategy: simple-shuffle # 配合 order 使用時，會按數字順序路由
+  routing_strategy: least-busy # 配合 order 使用時，會按數字順序路由
   enable_pre_call_checks: true # 關鍵：開啟後，LiteLLM 會先檢查 Provider 是否健康
   num_retries: 3 # 失敗後自動重試次數
   cooldown_time: 30 # 如果 LM Studio 斷線，冷卻 30 秒後才再次嘗試
