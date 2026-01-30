@@ -1,3 +1,7 @@
+router_settings:
+  routing_strategy: latency-based-routing
+  set_verbose: true
+
 model_list:
   # 優先級 1：家裡的 LM Studio
   - model_name: anthropic/my-llm
@@ -5,15 +9,14 @@ model_list:
       model: openai/local-model
       api_base: https://home-llm.neovega.cc/v1
       api_key: "527@Chuan"
-      rpm: 10
     model_info:
-      order: 1 # 數值越小越優先
+      order: 1
 
-  # 優先級 2：Zeabur AI Hub (當家裡連不上時)
+  # 優先級 2：Zeabur AI Hub (當家裡 500 報錯或超時時自動接手)
   - model_name: anthropic/my-llm
     litellm_params:
       model: openai/gpt-5-mini
       api_base: https://hnd1.aihub.zeabur.ai/v1
-      api_key: "sk-HCoZNQvl8toVLdXpEO9lzw" # 使用您測試成功的最新 Key
+      api_key: "sk-HCoZNQvl8toVLdXpEO9lzw"
     model_info:
       order: 2
