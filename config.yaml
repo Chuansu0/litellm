@@ -1,13 +1,31 @@
+# /app/config.yaml
+
+# LiteLLM 代理的模型清單
 model_list:
+  # 1. 你原本 workstation / Zeabur 那顆（anthropic/my-llm）
   - model_name: "anthropic/my-llm"
     litellm_params:
-      # 這顆照你原本工作站那顆設
-      model: "openai/local-model"
-      api_base: "https://home-llm.neovega.cc/v1"
-      api_key: "527@Chuan"
+      # 這邊照你原本可用的寫法，如果之前已經 OK 就不要亂改
+      # 如果這顆其實就是直接打 Zeabur AI Hub / 其他 provider，就填實際的 model
+      model: "anthropic/my-llm"
+      # 如果這顆其實是直接打外部 OpenAI / Zeabur，就填對應 api_base / api_key
+      # 例如（依你實際狀況調整，這裡只是範例）：
+      api_base: "https://hnd1.aihub.zeabur.ai/v1"
+      api_key: "你的 Zeabur API Key"
 
+  # 2. 家裡的 home-llm 這顆，透過 OpenAI 相容 API 暴露
   - model_name: "local/home-llm"
     litellm_params:
+      # 關鍵 1：明確使用 openai provider 風格
+      # 建議在 model 前面加 openai/ 前綴，讓 litellm 知道用 openai 路線
+      model: "openai/qwen/qwen3-1.7b"
+      #             ^^^^^^^^^^^^^^^^^^^
+      # 這裡的 home-llm-model-id 就是你在家裡那台 LLM server 上
+      # 自己設定給模型的 id（例如 gpt-4o-mini、llama-3-8b-instruct 等）
+      # 不需要真的 call /v1/models，只要和 home-llm 那邊一致即可
+
+      # 關鍵 2：指到你家用 LLM 的 OpenAI 相容 endpoint
       api_base: "https://home-llm.neovega.cc/v1"
-      model: "home-llm-在 home-llm /v1/models 裡的 id"
+
+      # 如果 home-llm 有設 API Key，就填這裡，沒有就拿掉這行
       api_key: "527@Chuan"
