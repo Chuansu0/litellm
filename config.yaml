@@ -1,11 +1,13 @@
 model_list:
-  - model_name: anthropic/my-llm
+  - model_name: "anthropic/my-llm"
     litellm_params:
-      model: openai/local-model
-      api_base: https://home-llm.neovega.cc/v1
+      # 這顆照你原本工作站那顆設
+      model: "openai/local-model"
+      api_base: "https://home-llm.neovega.cc/v1"
       api_key: "527@Chuan"
-- model_name: "local/home-llm"
+
+  - model_name: "local/home-llm"
     litellm_params:
       api_base: "https://home-llm.neovega.cc/v1"
       model: "home-llm-在 home-llm /v1/models 裡的 id"
-      api_key: "527@Chuan"  # 如果 home-llm 有需要
+      api_key: "527@Chuan"
