@@ -11,3 +11,4 @@ model_list:
 
       # 如果 home-llm 需要 key，就保留這行；不需要就刪掉
       api_key: "527@Chuan"
+
